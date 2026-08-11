@@ -1,16 +1,85 @@
-# Introduction to Git
+# Stack Overflown
 
-<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
+## 專案概述
+這是一個以程式開發錯誤模式為主題的方塊消除型遊戲，旨在透過遊戲化的方式讓使用者熟悉常見的程式錯誤情境。玩家需要在遊戲中辨識並消除指定的錯誤圖樣，藉此提升對程式除錯的敏感度與理解。
 
-Hey mollyb3work!
+Stack Overflown 是一個以開發者文化為主題、採用前端 Web 技術實作的方塊消除型遊戲。專案以俄羅斯方塊的基本互動機制為核心，將程式錯誤模式（error pattern）融入遊戲目標與視覺設計中，讓使用者在遊玩過程中辨識並消除常見程式除錯情境。
 
-Mona here. I'm done preparing your exercise. Hope you enjoy! 💚
+遊戲中會隨機指定一個 5 × 5 的錯誤圖樣，玩家需透過下落中的方塊拼接與整合，將對應的錯誤模式完整填滿於棋盤內。當棋盤中出現符合目標圖樣的區域時，系統將執行圖樣消除、更新分數、並重新產生下一個目標模式。
 
-Remember, it's self-paced so feel free to take a break! ☕️
+## 系統功能
 
-[![](https://img.shields.io/badge/Go%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/mollyb3work/skills-introduction-to-git/issues/1)
+本專案的主要功能如下：
 
----
+- 以 HTML、CSS 與 JavaScript 建構單頁式前端遊戲介面
+- 使用 Canvas API 繪製遊戲板、落下中的方塊與目標錯誤模式預覽
+- 提供基本的方塊操作功能：左移、右移、旋轉、軟落、硬落與暫停
+- 以 `ERROR_PATTERNS` 定義多個程式開發錯誤型態，例如 Null Pointer、Memory Leak、Off By One、Race Condition、Infinite Loop、Syntax Error 與 Type Mismatch
+- 透過 `matchesPattern()` 與 `clearPattern()` 判定及消除符合目標模式的區塊
+- 在遊戲結束時顯示最終分數，並提供重新開始選項
 
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+## 專案結構
+
+```text
+mod01/
+├── README.md
+└── src/
+    ├── index.html
+    ├── index.js
+    ├── onload.md
+    ├── patterns.js
+    └── style.css
+```
+
+### 主要檔案說明
+
+- [src/index.html](src/index.html)：定義頁面結構與遊戲 UI 容器，包含主遊戲畫布、分數顯示、目標模式預覽與遊戲結束覆層。
+- [src/index.js](src/index.js)：實作遊戲主循環、棋盤繪製、落下邏輯、方塊碰撞、旋轉、移動、目標比對、消除與分數更新。
+- [src/patterns.js](src/patterns.js)：定義錯誤模式資料集合，包含各種 5 × 5 的目標圖樣。
+- [src/style.css](src/style.css)：提供整體視覺主題與響應式版面樣式。
+- [src/onload.md](src/onload.md)：函式或使用說明文本，作為額外文件資源。
+
+## 遊戲規則
+
+1. 遊戲開始時，系統將初始化棋盤並隨機選擇一個錯誤模式作為目標。
+2. 方塊會以固定時間間隔向下落下，玩家可以透過鍵盤事件調整其位置與角度。
+3. 當已落定的方塊形成目標模式所需的區域型態時，程式會判定為成功比對。
+4. 系統會清除符合條件的棋盤區塊，並根據成功消除次數增加遊戲分數。
+5. 若新方塊無法成功進入遊戲區域，遊戲將進入結束狀態。
+
+## 控制方式
+
+| 操作 | 說明 |
+| --- | --- |
+| 左右方向鍵 | 移動目前方塊 | 
+| 上方向鍵 | 旋轉目前方塊 | 
+| 下方向鍵 | 使方塊軟降 | 
+| Space | 使方塊直接硬落 | 
+| P | 暫停或恢復遊戲 |
+
+## 啟動與執行
+
+此專案為純前端靜態應用程式，無需安裝套件。
+
+### 直接開啟
+
+可直接在瀏覽器中開啟以下檔案：
+
+- [src/index.html](src/index.html)
+
+### 透過本機伺服器執行
+
+於專案根目錄執行：
+
+```bash
+python -m http.server
+```
+
+接著在瀏覽器中訪問：
+
+http://localhost:8000/src/index.html
+
+## 授權與維護
+
+本專案包含 MIT 授權條款，請參閱根目錄中的授權文件。其餘開發與維護資訊，請依據 repository 的實際更新進度與版本控管流程進行管理。
 
